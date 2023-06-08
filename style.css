@@ -1,0 +1,27 @@
+
+
+#gameboard{
+    width: 320px;
+    height: 320px;
+    background-color: black;
+    display: grid;
+    grid-area: auto;
+
+}
+
+#container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Adjust the height as needed */
+}
+  
+
+p{
+    font-family: "Audiowide", sans-serif;
+}
+
+#wow{
+    text-align: center;
+    font-size: xx-large;
+}

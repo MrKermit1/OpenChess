@@ -17,6 +17,6 @@ const startPieces = [
 function createBoard(){
     startPieces.forEach((piece) => {
         const square = document.createElement('div');
-        square.classList.add('square');
+        square.classList.add('square')
     });
 }

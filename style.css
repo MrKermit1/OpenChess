@@ -30,6 +30,12 @@ p{
     width: 110px;*/
     height: 40px;
     width: 40px;
+    position: relative;
+}
+
+.piece{
+    position: relative;
+    z-index: 9;
 }
 
 .square svg{
@@ -37,6 +43,13 @@ p{
     width: 100px;*/
     height: 30px;
     width: 30px;
+    position: relative;
+    z-index: -9;
+}
+
+path{
+    position: relative;
+    z-index: -10;
 }
 
 .black{

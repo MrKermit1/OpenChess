@@ -1,6 +1,8 @@
 #gameboard{
-    width: 880px;
-    height: 880px;
+    /*width: 880px;
+    height: 880px;*/
+    width: 320px;
+    height: 320px;
     display: flex;
     flex-wrap: wrap;
     position: absolute;
@@ -24,19 +26,25 @@ p{
 
 /*chess section*/
 .square{
-    height: 110px;
-    width: 110px;
-    /*font-size: xx-large;
-    text-align: center;*/
+    /*height: 110px;
+    width: 110px;*/
+    height: 40px;
+    width: 40px;
 }
 
 .square svg{
-    height: 100px;
-    width: 100px;
+    /*height: 100px;
+    width: 100px;*/
+    height: 30px;
+    width: 30px;
 }
 
 .black{
-    fill: rgb(255, 255, 255);
+    fill: rgb(0, 0, 0);
+}
+
+.white{
+    fill: white;
 }
 
 .beige{

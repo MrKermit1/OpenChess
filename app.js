@@ -13,6 +13,8 @@ const pawn = '<div class="piece" id="pawn"><svg xmlns="http://www.w3.org/2000/sv
 
 
 const width = 8;
+let playerGo = 'black';
+player.textContent = 'black';
 const startPieces = [
     rook, horse, bishop, queen, king, bishop, horse, rook,
     pawn, pawn, pawn, pawn, pawn, pawn, pawn, pawn,
@@ -51,3 +53,72 @@ function createBoard(){
     });
 }
 createBoard();
+
+const allSq = document.querySelectorAll("#gameboard .square");
+
+allSq.forEach(square => {
+    square.addEventListener('dragstart', dragStart);
+    square.addEventListener('dragover', dragOver);
+    square.addEventListener('drop', dragDrop);
+});
+
+let startPositionId;
+let  draggedElement;
+
+function dragStart(e){
+    startPositionId = (e.target.parentNode.getAttribute('square-id'));
+    draggedElement = e.target;
+}
+
+function dragOver(e){
+    e.preventDefault();
+
+}
+
+function dragDrop(e){
+    e.stopPropagation();
+    console.log('playerGo', playerGo);
+    
+    console.log('e.target', e.target);
+    const corrcetGo = draggedElement.firstChild.classList.contains(playerGo);
+    const taken = e.target.classList.contains('piece');
+    const opponentGo = playerGo === 'white' ? 'black' : 'white';
+    console.log('opponentGo', opponentGo);
+    const takenByOpponent = e.target.firstChild?.classList.contains(opponentGo);
+
+    if (corrcetGo) {
+        if (takenByOpponent && valid) {
+            e.target.parentNode.append(draggedElement);
+            e.target.remove();
+            changePlayer();
+        }
+    }
+
+   
+    //e.target.append(draggedElement);
+    changePlayer();
+}
+
+function changePlayer(){
+    if (playerGo === 'black') {
+        reverseId();
+        playerGo = 'white';
+        player.textContent = 'white';
+    }else{
+        revertId();
+        playerGo = 'black';
+        player.textContent = 'black';
+    }
+}
+
+
+function reverseId(){
+    const allSq = document.querySelectorAll('.square');
+    allSq.forEach((square, i) => 
+        square.setAttribute('square-id', (width*width - 1) - i));
+}
+
+function revertId(){
+    const allSq = document.querySelectorAll(".square");
+    allSq.forEach((square, i) => square.setAttribute('square-id', i));
+}

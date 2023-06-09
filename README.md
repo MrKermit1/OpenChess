@@ -1,2 +1,3 @@
 # OpenChess
-Otwarte i darmowe szachy
+Open and free chess in js
+

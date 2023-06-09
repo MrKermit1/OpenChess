@@ -1,24 +1,48 @@
 #gameboard{
-    width: 320px;
-    height: 320px;
-    background-color: black;
-    display: grid;
-    grid-area: auto;
-
-}
-
-#container {
+    width: 880px;
+    height: 880px;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh; /* Adjust the height as needed */
+    flex-wrap: wrap;
+    position: absolute;
+    left: 50vh;
 }
-  
+
 p{
     font-family: "Audiowide", sans-serif;
+}
+
+
+  
+#who {
+    padding-left: 10px;
 }
 
 #wow{
     text-align: center;
     font-size: xx-large;
+}  
+
+/*chess section*/
+.square{
+    height: 110px;
+    width: 110px;
+    /*font-size: xx-large;
+    text-align: center;*/
+}
+
+.square svg{
+    height: 100px;
+    width: 100px;
+}
+
+.black{
+    fill: rgb(255, 255, 255);
+}
+
+.beige{
+    background-color: rgb(201, 201, 140);
+}
+
+.brown{
+    background-color: rgb(88, 48, 48);
 }

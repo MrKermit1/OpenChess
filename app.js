@@ -78,19 +78,33 @@ function dragOver(e){
 function dragDrop(e){
     e.stopPropagation();
     console.log('playerGo', playerGo);
-    
     console.log('e.target', e.target);
-    const corrcetGo = draggedElement.firstChild.classList.contains(playerGo);
+
+    const correctGo = draggedElement.firstChild.classList.contains(playerGo);
     const taken = e.target.classList.contains('piece');
+    const valid = checkIfValid(e.target);
+
     const opponentGo = playerGo === 'white' ? 'black' : 'white';
     console.log('opponentGo', opponentGo);
     const takenByOpponent = e.target.firstChild?.classList.contains(opponentGo);
 
-    if (corrcetGo) {
-        if (takenByOpponent && valid) {
-            e.target.parentNode.append(draggedElement);
-            e.target.remove();
+    if (correctGo) {
+        //if (takenByOpponent && valid) {
+        //    e.target.parentNode.append(draggedElement);
+        //    e.target.remove();
+        //    changePlayer();
+        //    return;
+        //}
+
+        if (taken && takenByOpponent) {
+            info.textContent = "nieprawidłowy ruch"
+            setTimeout(() => info.textContent = "", 2000);
+            return;
+        }
+        if (valid) {
+            e.target.append(draggedElement);
             changePlayer();
+            return;
         }
     }
 
@@ -121,4 +135,22 @@ function reverseId(){
 function revertId(){
     const allSq = document.querySelectorAll(".square");
     allSq.forEach((square, i) => square.setAttribute('square-id', i));
+}
+
+
+function checkIfValid(target){
+    const targetId = Number(target.getAttribute('square-id')) || Number(target.parentNode.getAttribute('square-id'));
+    const startId = Number(startPositionId);
+    const piece = draggedElement.id
+    console.log(targetId);
+    console.log(startId);
+    console.log('piece', piece);
+
+    if (piece == 'pawn') {
+        const starterRow = [8, 9, 10 ,11 ,12 ,13, 14, 15];
+        if (starterRow.includes(startId) && startId + width * 2 === targetId || startId + width === targetId)  {
+            return true;
+        }
+    }
+
 }
